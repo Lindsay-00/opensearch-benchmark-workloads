@@ -7,130 +7,169 @@
           "parallel": {
             "tasks": [
               {
-                "name":"cheap-tip-amount",
-                "operation":"cheap-tip-amount",
-                "settings": {
-                  "index.requests.cache.enable":true
+                "name": "query-1",
+                "operation": {
+                  "operation-type": "search",
+                  "body": {
+                    "size": 0,
+                    "query": {
+                      "range": {
+                        "pickup_datetime": {
+                          "gte": "2020-01-01 00:00:00",
+                          "lte": "2023-12-31 23:59:59"
+                        }
+                      }
+                    },
+                    "aggs": {
+                      "vendor_id_terms": {
+                        "terms": {
+                          "field": "vendor_id",
+                          "size": 100
+                        },
+                        "aggs": {
+                          "avg_total_amount": {
+                            "avg": {
+                              "field": "total_amount"
+                            }
+                          },
+                          "vendor_name_terms": {
+                            "terms": {
+                              "field": "vendor_name.keyword",
+                              "size": 100
+                            },
+                            "aggs": {
+                              "avg_tip_per_vendor_name": {
+                                "avg": {
+                                  "field": "tip_amount"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
                 },
-                "warmup-iterations": 1200,
-                "iterations": 5000,
+                "settings": {
+                  "index.requests.cache.enable": true
+                },
+                "warmup-iterations": 0,
+                "iterations": 1,
                 "target-throughput": 100
               },
               {
-                "name":"cheap-fare-amount",
-                "operation":"cheap-fare-amount",
-                "settings": {
-                  "index.requests.cache.enable":true
+                "name": "query-2",
+                "operation": {
+                  "operation-type": "search",
+                  "body": {
+                    "size": 0,
+                    "query": {
+                      "range": {
+                        "pickup_datetime": {
+                          "gte": "2010-01-01 00:00:00",
+                          "lte": "2030-12-31 23:59:59"
+                        }
+                      }
+                    },
+                    "aggs": {
+                      "sum_total_amount": {
+                        "sum": {
+                          "field": "total_amount"
+                        }
+                      },
+                      "sum_tip_amount": {
+                        "sum": {
+                          "field": "tip_amount"
+                        }
+                      }
+                    }
+                  }
                 },
-                "warmup-iterations": 1200,
-                "iterations": 5000,
+                "settings": {
+                  "index.requests.cache.enable": true
+                },
+                "warmup-iterations": 0,
+                "iterations": 1,
                 "target-throughput": 100
               },
               {
-                "name":"cheap-total-amount",
-                "operation":"cheap-total-amount",
-                "settings": {
-                  "index.requests.cache.enable":true
+                "name": "query-3",
+                "operation": {
+                  "operation-type": "search",
+                  "body": {
+                    "size": 0,
+                    "query": {
+                      "wildcard": {
+                        "vendor_id": {
+                          "value": "*xyz*"
+                        }
+                      }
+                    },
+                    "aggs": {
+                      "avg_total_amount": {
+                        "avg": {
+                          "field": "total_amount"
+                        }
+                      }
+                    }
+                  }
                 },
-                "warmup-iterations": 1200,
-                "iterations": 5000,
+                "settings": {
+                  "index.requests.cache.enable": true
+                },
+                "warmup-iterations": 0,
+                "iterations": 1,
                 "target-throughput": 100
               },
               {
-                "name":"cheap-pickup",
-                "operation":"cheap-pickup",
-                "settings": {
-                  "index.requests.cache.enable":true
+                "name": "query-4",
+                "operation": {
+                  "operation-type": "search",
+                  "body": {
+                    "size": 0,
+                    "query": {
+                      "range": {
+                        "pickup_datetime": {
+                          "gte": "2020-01-01 00:00:00",
+                          "lte": "2023-12-31 23:59:59"
+                        }
+                      }
+                    },
+                    "aggs": {
+                      "vendor_id_terms": {
+                        "terms": {
+                          "field": "vendor_id",
+                          "size": 100
+                        },
+                        "aggs": {
+                          "trip_type_terms": {
+                            "terms": {
+                              "field": "trip_type",
+                              "size": 100
+                            },
+                            "aggs": {
+                              "payment_type_terms": {
+                                "terms": {
+                                  "field": "payment_type",
+                                  "size": 100
+                                },
+                                "aggs": {
+                                  "avg_fare_amount": {
+                                    "avg": {
+                                      "field": "fare_amount"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
                 },
-                "warmup-iterations": 1200,
-                "iterations": 5000,
-                "target-throughput": 100
-              },
-              {
-                "name":"cheap-dropoff",
-                "operation":"cheap-dropoff",
                 "settings": {
-                  "index.requests.cache.enable":true
-                },
-                "warmup-iterations": 1200,
-                "iterations": 5000,
-                "target-throughput": 100
-              },
-              {
-                "name":"autohisto-agg",
-                "operation":"autohisto_agg",
-                "settings": {
-                  "index.requests.cache.enable":true
-                },
-                "warmup-iterations": 300,
-                "iterations": 20000,
-                "target-throughput": 100
-              },
-              {
-                "name":"date-histogram-agg",
-                "operation":"date_histogram_agg",
-                "settings": {
-                  "index.requests.cache.enable":true
-                },
-                "warmup-iterations": 300,
-                "iterations": 20000,
-                "target-throughput": 100
-              },
-              {
-                "name":"date-histogram-calendar-interval",
-                "operation":"date_histogram_calendar_interval",
-                "settings": {
-                  "index.requests.cache.enable":true
-                },
-                "warmup-iterations": 300,
-                "iterations": 20000,
-                "target-throughput": 100
-              },
-              {
-                "name":"date-histogram-calendar-interval-with-tz",
-                "operation":"date_histogram_calendar_interval_with_tz",
-                "settings": {
-                  "index.requests.cache.enable":true
-                },
-                "warmup-iterations": 300,
-                "iterations": 20000,
-                "target-throughput": 100
-              },
-              {
-                "name":"date-histogram-fixed-interval",
-                "operation":"date_histogram_fixed_interval",
-                "settings": {
-                  "index.requests.cache.enable":true
-                },
-                "warmup-iterations": 300,
-                "iterations": 20000,
-                "target-throughput": 100
-              },
-              {
-                "name":"date-histogram-fixed-interval-with-tz",
-                "operation":"date_histogram_fixed_interval_with_tz",
-                "settings": {
-                  "index.requests.cache.enable":true
-                },
-                "warmup-iterations": 300,
-                "iterations": 20000,
-                "target-throughput": 100
-              },
-              {
-                "name":"auto-date-histogram",
-                "operation":"auto_date_histogram",
-                "settings": {
-                  "index.requests.cache.enable":true
-                },
-                "warmup-iterations": 300,
-                "iterations": 20000,
-                "target-throughput": 100
-              },
-              {
-                "name":"auto-date-histogram-with-tz",
-                "operation":"auto_date_histogram_with_tz",
-                "settings": {
-                  "index.requests.cache.enable":true
+                  "index.requests.cache.enable": true
                 },
                 "warmup-iterations": 300,
                 "iterations": 20000,
