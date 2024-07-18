@@ -53,8 +53,8 @@
                 "settings": {
                   "index.requests.cache.enable": true
                 },
-                "warmup-iterations": 0,
-                "iterations": 1,
+                "warmup-iterations": 300,
+                "iterations": 20000,
                 "target-throughput": 100
               },
               {
@@ -88,8 +88,8 @@
                 "settings": {
                   "index.requests.cache.enable": true
                 },
-                "warmup-iterations": 0,
-                "iterations": 1,
+                "warmup-iterations": 300,
+                "iterations": 20000,
                 "target-throughput": 100
               },
               {
@@ -117,8 +117,8 @@
                 "settings": {
                   "index.requests.cache.enable": true
                 },
-                "warmup-iterations": 0,
-                "iterations": 1,
+                "warmup-iterations": 300,
+                "iterations": 20000,
                 "target-throughput": 100
               },
               {
