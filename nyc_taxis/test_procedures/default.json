@@ -1,118 +1,118 @@
+{
+  "name": "append-no-conflicts",
+  "description": "Indexes the whole document corpus using a setup that will lead to a larger indexing throughput than the default settings and produce a smaller index (higher compression rate). Document ids are unique so all index operations are append only. After that a couple of queries are run.",
+  "default": true,
+  "schedule": [
     {
-      "name": "append-no-conflicts",
-      "description": "Indexes the whole document corpus using a setup that will lead to a larger indexing throughput than the default settings and produce a smaller index (higher compression rate). Document ids are unique so all index operations are append only. After that a couple of queries are run.",
-      "default": true,
-      "schedule": [
-        "parallel": {
-          "tasks": [
-            {
-              "name": "expensive-query-1",
-              "operation": {
-                "operation-type": "search",
-                "body": {
-                  "size": 0,
-                  "query": {
-                    "bool": {
-                      "must": [
-                        {
-                          "range": {
-                            "pickup_datetime": {
-                              "gte": "2010-01-01 00:00:00",
-                              "lte": "2030-12-31 23:59:59"
-                            }
+      "parallel": {
+        "tasks": [
+          {
+            "name": "expensive-query-1",
+            "operation": {
+              "operation-type": "search",
+              "body": {
+                "size": 0,
+                "query": {
+                  "bool": {
+                    "must": [
+                      {
+                        "range": {
+                          "pickup_datetime": {
+                            "gte": "2010-01-01 00:00:00",
+                            "lte": "2030-12-31 23:59:59"
                           }
-                        },
-                        {
-                          "range": {
-                            "dropoff_datetime": {
-                              "gte": "2010-01-01 00:00:00",
-                              "lte": "2030-12-31 23:59:59"
-                            }
+                        }
+                      },
+                      {
+                        "range": {
+                          "dropoff_datetime": {
+                            "gte": "2010-01-01 00:00:00",
+                            "lte": "2030-12-31 23:59:59"
                           }
-                        },
-                        {
-                          "wildcard": {
-                            "vendor_id": "*"
-                          }
-                        },
-                        {
-                          "geo_bounding_box": {
-                            "pickup_location": {
-                              "top_left": {
-                                "lat": 40.9153,
-                                "lon": -74.2591
-                              },
-                              "bottom_right": {
-                                "lat": 40.4774,
-                                "lon": -73.7004
-                              }
+                        }
+                      },
+                      {
+                        "wildcard": {
+                          "vendor_id": "*"
+                        }
+                      },
+                      {
+                        "geo_bounding_box": {
+                          "pickup_location": {
+                            "top_left": {
+                              "lat": 40.9153,
+                              "lon": -74.2591
+                            },
+                            "bottom_right": {
+                              "lat": 40.4774,
+                              "lon": -73.7004
                             }
                           }
                         }
-                      ]
-                    }
-                  },
-                  "aggs": {
-                    "vendor_id_terms": {
-                      "terms": {
-                        "field": "vendor_id",
-                        "size": 50,
-                        "execution_hint": "map"
-                      },
-                      "aggs": {
-                        "trip_type_terms": {
-                          "terms": {
-                            "field": "trip_type",
-                            "size": 10,
-                            "execution_hint": "map"
-                          },
-                          "aggs": {
-                            "payment_type_terms": {
-                              "terms": {
-                                "field": "payment_type",
-                                "size": 10,
-                                "execution_hint": "map"
-                              },
-                              "aggs": {
-                                "pickup_location_grid": {
-                                  "geohash_grid": {
-                                    "field": "pickup_location",
-                                    "precision": 4
-                                  },
-                                  "aggs": {
-                                    "dropoff_location_grid": {
-                                      "geohash_grid": {
-                                        "field": "dropoff_location",
-                                        "precision": 4
+                      }
+                    ]
+                  }
+                },
+                "aggs": {
+                  "vendor_id_terms": {
+                    "terms": {
+                      "field": "vendor_id",
+                      "size": 50,
+                      "execution_hint": "map"
+                    },
+                    "aggs": {
+                      "trip_type_terms": {
+                        "terms": {
+                          "field": "trip_type",
+                          "size": 10,
+                          "execution_hint": "map"
+                        },
+                        "aggs": {
+                          "payment_type_terms": {
+                            "terms": {
+                              "field": "payment_type",
+                              "size": 10,
+                              "execution_hint": "map"
+                            },
+                            "aggs": {
+                              "pickup_location_grid": {
+                                "geohash_grid": {
+                                  "field": "pickup_location",
+                                  "precision": 4
+                                },
+                                "aggs": {
+                                  "dropoff_location_grid": {
+                                    "geohash_grid": {
+                                      "field": "dropoff_location",
+                                      "precision": 4
+                                    },
+                                    "aggs": {
+                                      "avg_total_amount": {
+                                        "avg": {
+                                          "field": "total_amount"
+                                        }
                                       },
-                                      "aggs": {
-                                        "avg_total_amount": {
-                                          "avg": {
-                                            "field": "total_amount"
-                                          }
+                                      "sum_tip_amount": {
+                                        "sum": {
+                                          "field": "tip_amount"
+                                        }
+                                      },
+                                      "pickup_time_histogram": {
+                                        "date_histogram": {
+                                          "field": "pickup_datetime",
+                                          "interval": "week"
                                         },
-                                        "sum_tip_amount": {
-                                          "sum": {
-                                            "field": "tip_amount"
-                                          }
-                                        },
-                                        "pickup_time_histogram": {
-                                          "date_histogram": {
-                                            "field": "pickup_datetime",
-                                            "interval": "week"
+                                        "aggs": {
+                                          "avg_total_amount_per_week": {
+                                            "avg": {
+                                              "field": "total_amount"
+                                            }
                                           },
-                                          "aggs": {
-                                            "avg_total_amount_per_week": {
-                                              "avg": {
-                                                "field": "total_amount"
-                                              }
-                                            },
-                                            "moving_avg_total_amount": {
-                                              "moving_avg": {
-                                                "buckets_path": "avg_total_amount_per_week",
-                                                "window": 10,
-                                                "model": "linear"
-                                              }
+                                          "moving_avg_total_amount": {
+                                            "moving_avg": {
+                                              "buckets_path": "avg_total_amount_per_week",
+                                              "window": 10,
+                                              "model": "linear"
                                             }
                                           }
                                         }
@@ -128,90 +128,90 @@
                     }
                   }
                 }
-              },
-              "settings": {
-                "index.requests.cache.enable": false
-              },
-              "warmup-iterations": 0,
-              "iterations": 1,
-              "target-throughput": 100
+              }
             },
-            {
-              "name": "expensive-query-2",
-              "operation": {
-                "operation-type": "search",
-                "body": {
-                  "size": 0,
-                  "query": {
-                    "bool": {
-                      "must": [
-                        {
-                          "range": {
-                            "pickup_datetime": {
-                              "gte": "2010-01-01 00:00:00",
-                              "lte": "2030-12-31 23:59:59"
-                            }
-                          }
-                        },
-                        {
-                          "range": {
-                            "dropoff_datetime": {
-                              "gte": "2010-01-01 00:00:00",
-                              "lte": "2030-12-31 23:59:59"
-                            }
-                          }
-                        },
-                        {
-                          "wildcard": {
-                            "vendor_id": "*xyz*"
+            "settings": {
+              "index.requests.cache.enable": false
+            },
+            "warmup-iterations": 0,
+            "iterations": 1,
+            "target-throughput": 100
+          },
+          {
+            "name": "expensive-query-2",
+            "operation": {
+              "operation-type": "search",
+              "body": {
+                "size": 0,
+                "query": {
+                  "bool": {
+                    "must": [
+                      {
+                        "range": {
+                          "pickup_datetime": {
+                            "gte": "2010-01-01 00:00:00",
+                            "lte": "2030-12-31 23:59:59"
                           }
                         }
-                      ]
-                    }
-                  },
-                  "aggs": {
-                    "vendor_id_terms": {
-                      "terms": {
-                        "field": "vendor_id",
-                        "size": 50,
-                        "execution_hint": "map"
                       },
-                      "aggs": {
-                        "trip_type_terms": {
-                          "terms": {
-                            "field": "trip_type",
-                            "size": 10,
-                            "execution_hint": "map"
-                          },
-                          "aggs": {
-                            "payment_type_terms": {
-                              "terms": {
-                                "field": "payment_type",
-                                "size": 10,
-                                "execution_hint": "map"
-                              },
-                              "aggs": {
-                                "pickup_location_grid": {
-                                  "geohash_grid": {
-                                    "field": "pickup_location",
-                                    "precision": 4
-                                  },
-                                  "aggs": {
-                                    "dropoff_location_grid": {
-                                      "geohash_grid": {
-                                        "field": "dropoff_location",
-                                        "precision": 4
+                      {
+                        "range": {
+                          "dropoff_datetime": {
+                            "gte": "2010-01-01 00:00:00",
+                            "lte": "2030-12-31 23:59:59"
+                          }
+                        }
+                      },
+                      {
+                        "wildcard": {
+                          "vendor_id": "*xyz*"
+                        }
+                      }
+                    ]
+                  }
+                },
+                "aggs": {
+                  "vendor_id_terms": {
+                    "terms": {
+                      "field": "vendor_id",
+                      "size": 50,
+                      "execution_hint": "map"
+                    },
+                    "aggs": {
+                      "trip_type_terms": {
+                        "terms": {
+                          "field": "trip_type",
+                          "size": 10,
+                          "execution_hint": "map"
+                        },
+                        "aggs": {
+                          "payment_type_terms": {
+                            "terms": {
+                              "field": "payment_type",
+                              "size": 10,
+                              "execution_hint": "map"
+                            },
+                            "aggs": {
+                              "pickup_location_grid": {
+                                "geohash_grid": {
+                                  "field": "pickup_location",
+                                  "precision": 4
+                                },
+                                "aggs": {
+                                  "dropoff_location_grid": {
+                                    "geohash_grid": {
+                                      "field": "dropoff_location",
+                                      "precision": 4
+                                    },
+                                    "aggs": {
+                                      "avg_total_amount": {
+                                        "avg": {
+                                          "field": "total_amount"
+                                        }
                                       },
-                                      "aggs": {
-                                        "avg_total_amount": {
-                                          "avg": {
-                                            "field": "total_amount"
-                                          }
-                                        },
-                                        "sum_tip_amount": {
-                                          "sum": {
-                                            "field": "tip_amount"
-                                          }
+                                      "sum_tip_amount": {
+                                        "sum": {
+                                          "field": "tip_amount"
                                         }
                                       }
                                     }
@@ -225,18 +225,20 @@
                     }
                   }
                 }
-              },
-              "settings": {
-                "index.requests.cache.enable": false
-              },
-              "warmup-iterations": 0,
-              "iterations": 1,
-              "target-throughput": 100
-            }
-          ]
-        }
-      ]
-    },
+              }
+            },
+            "settings": {
+              "index.requests.cache.enable": false
+            },
+            "warmup-iterations": 0,
+            "iterations": 1,
+            "target-throughput": 100
+          }
+        ]
+      }
+    }
+  ]
+},
     {
       "name": "append-no-conflicts-index-only",
       "description": "Indexes the whole document corpus using a setup that will lead to a larger indexing throughput than the default settings and produce a smaller index (higher compression rate). Document ids are unique so all index operations are append only.",
