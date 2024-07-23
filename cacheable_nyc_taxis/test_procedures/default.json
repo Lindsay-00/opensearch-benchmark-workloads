@@ -15,7 +15,7 @@
                     "query": {
                       "range": {
                         "pickup_datetime": {
-                          "gte": "2020-01-01 00:00:00",
+                          "gte": "2000-01-01 00:00:00",
                           "lte": "2023-12-31 23:59:59"
                         }
                       }
@@ -24,23 +24,46 @@
                       "vendor_id_terms": {
                         "terms": {
                           "field": "vendor_id",
-                          "size": 100
+                          "size": 10000
                         },
                         "aggs": {
-                          "avg_total_amount": {
-                            "avg": {
-                              "field": "total_amount"
-                            }
-                          },
-                          "vendor_name_terms": {
+                          "trip_type_terms": {
                             "terms": {
-                              "field": "vendor_name.keyword",
-                              "size": 100
+                              "field": "trip_type",
+                              "size": 10000
                             },
                             "aggs": {
-                              "avg_tip_per_vendor_name": {
-                                "avg": {
-                                  "field": "tip_amount"
+                              "payment_type_terms": {
+                                "terms": {
+                                  "field": "payment_type",
+                                  "size": 10000
+                                },
+                                "aggs": {
+                                  "avg_fare_amount": {
+                                    "avg": {
+                                      "field": "fare_amount"
+                                    }
+                                  },
+                                  "sum_total_amount": {
+                                    "sum": {
+                                      "field": "total_amount"
+                                    }
+                                  },
+                                  "min_fare_amount": {
+                                    "min": {
+                                      "field": "fare_amount"
+                                    }
+                                  },
+                                  "max_fare_amount": {
+                                    "max": {
+                                      "field": "fare_amount"
+                                    }
+                                  },
+                                  "cardinality_trip_id": {
+                                    "cardinality": {
+                                      "field": "trip_id"
+                                    }
+                                  }
                                 }
                               }
                             }
@@ -53,9 +76,9 @@
                 "settings": {
                   "index.requests.cache.enable": true
                 },
-                "warmup-iterations": 50000,
-                "iterations": 200000,
-                "target-throughput": 10000
+                "warmup-iterations": 0,
+                "iterations": 1,
+                "target-throughput": 100
               },
               {
                 "name": "query-2",
@@ -66,7 +89,7 @@
                     "query": {
                       "range": {
                         "pickup_datetime": {
-                          "gte": "2010-01-01 00:00:00",
+                          "gte": "2000-01-01 00:00:00",
                           "lte": "2030-12-31 23:59:59"
                         }
                       }
@@ -81,6 +104,27 @@
                         "sum": {
                           "field": "tip_amount"
                         }
+                      },
+                      "avg_fare_amount": {
+                        "avg": {
+                          "field": "fare_amount"
+                        }
+                      },
+                      "min_total_amount": {
+                        "min": {
+                          "field": "total_amount"
+                        }
+                      },
+                      "max_total_amount": {
+                        "max": {
+                          "field": "total_amount"
+                        }
+                      },
+                      "percentiles_total_amount": {
+                        "percentiles": {
+                          "field": "total_amount",
+                          "percents": [50, 75, 90, 95, 99]
+                        }
                       }
                     }
                   }
@@ -88,9 +132,9 @@
                 "settings": {
                   "index.requests.cache.enable": true
                 },
-                "warmup-iterations": 50000,
-                "iterations": 200000,
-                "target-throughput": 10000
+                "warmup-iterations": 0,
+                "iterations": 1,
+                "target-throughput": 100
               },
               {
                 "name": "query-3",
@@ -110,6 +154,35 @@
                         "avg": {
                           "field": "total_amount"
                         }
+                      },
+                      "vendor_name_terms": {
+                        "terms": {
+                          "field": "vendor_name.keyword",
+                          "size": 10000
+                        },
+                        "aggs": {
+                          "sum_tip_amount": {
+                            "sum": {
+                              "field": "tip_amount"
+                            }
+                          },
+                          "max_total_amount": {
+                            "max": {
+                              "field": "total_amount"
+                            }
+                          },
+                          "min_fare_amount": {
+                            "min": {
+                              "field": "fare_amount"
+                            }
+                          },
+                          "percentiles_total_amount": {
+                            "percentiles": {
+                              "field": "total_amount",
+                              "percents": [50, 75, 90, 95, 99]
+                            }
+                          }
+                        }
                       }
                     }
                   }
@@ -117,9 +190,9 @@
                 "settings": {
                   "index.requests.cache.enable": true
                 },
-                "warmup-iterations": 50000,
-                "iterations": 200000,
-                "target-throughput": 10000
+                "warmup-iterations": 0,
+                "iterations": 1,
+                "target-throughput": 100
               },
               {
                 "name": "query-4",
@@ -130,7 +203,7 @@
                     "query": {
                       "range": {
                         "pickup_datetime": {
-                          "gte": "2020-01-01 00:00:00",
+                          "gte": "2000-01-01 00:00:00",
                           "lte": "2023-12-31 23:59:59"
                         }
                       }
@@ -139,24 +212,50 @@
                       "vendor_id_terms": {
                         "terms": {
                           "field": "vendor_id",
-                          "size": 100
+                          "size": 10000
                         },
                         "aggs": {
                           "trip_type_terms": {
                             "terms": {
                               "field": "trip_type",
-                              "size": 100
+                              "size": 10000
                             },
                             "aggs": {
                               "payment_type_terms": {
                                 "terms": {
                                   "field": "payment_type",
-                                  "size": 100
+                                  "size": 10000
                                 },
                                 "aggs": {
                                   "avg_fare_amount": {
                                     "avg": {
                                       "field": "fare_amount"
+                                    }
+                                  },
+                                  "sum_total_amount": {
+                                    "sum": {
+                                      "field": "total_amount"
+                                    }
+                                  },
+                                  "min_fare_amount": {
+                                    "min": {
+                                      "field": "fare_amount"
+                                    }
+                                  },
+                                  "max_fare_amount": {
+                                    "max": {
+                                      "field": "fare_amount"
+                                    }
+                                  },
+                                  "percentiles_total_amount": {
+                                    "percentiles": {
+                                      "field": "total_amount",
+                                      "percents": [50, 75, 90, 95, 99]
+                                    }
+                                  },
+                                  "cardinality_trip_id": {
+                                    "cardinality": {
+                                      "field": "trip_id"
                                     }
                                   }
                                 }
@@ -171,12 +270,12 @@
                 "settings": {
                   "index.requests.cache.enable": true
                 },
-                "warmup-iterations": 50000,
-                "iterations": 200000,
-                "target-throughput": 10000
+                "warmup-iterations": 0,
+                "iterations": 1,
+                "target-throughput": 100
               }
             ]
-          }
+          }          
         }
       ]
     }
