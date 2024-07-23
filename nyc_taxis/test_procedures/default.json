@@ -4,46 +4,232 @@
       "default": true,
       "schedule": [
         {
-          "operation": "default",
-          "warmup-iterations": 5000,
-          "iterations": 10000
-          {%- if not target_throughput %}
-          ,"target-throughput": 300
-          {%- elif target_throughput is string and target_throughput.lower() == 'none' %}
-          {%- else %}
-          ,"target-throughput": {{ target_throughput | tojson }}
-          {%- endif %}
-          {%-if search_clients is defined and search_clients %}
-          ,"clients": {{ search_clients | tojson}}
-          {%- endif %}
+          "name": "expensive-query-1",
+          "operation": {
+            "operation-type": "search",
+            "body": {
+              "size": 0,
+              "query": {
+                "bool": {
+                  "must": [
+                    {
+                      "range": {
+                        "pickup_datetime": {
+                          "gte": "2010-01-01 00:00:00",
+                          "lte": "2030-12-31 23:59:59"
+                        }
+                      }
+                    },
+                    {
+                      "range": {
+                        "dropoff_datetime": {
+                          "gte": "2010-01-01 00:00:00",
+                          "lte": "2030-12-31 23:59:59"
+                        }
+                      }
+                    },
+                    {
+                      "wildcard": {
+                        "vendor_id": "*"
+                      }
+                    },
+                    {
+                      "geo_bounding_box": {
+                        "pickup_location": {
+                          "top_left": {
+                            "lat": 40.9153,
+                            "lon": -74.2591
+                          },
+                          "bottom_right": {
+                            "lat": 40.4774,
+                            "lon": -73.7004
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "aggs": {
+                "vendor_id_terms": {
+                  "terms": {
+                    "field": "vendor_id",
+                    "size": 50,
+                    "execution_hint": "map"
+                  },
+                  "aggs": {
+                    "trip_type_terms": {
+                      "terms": {
+                        "field": "trip_type",
+                        "size": 10,
+                        "execution_hint": "map"
+                      },
+                      "aggs": {
+                        "payment_type_terms": {
+                          "terms": {
+                            "field": "payment_type",
+                            "size": 10,
+                            "execution_hint": "map"
+                          },
+                          "aggs": {
+                            "pickup_location_grid": {
+                              "geohash_grid": {
+                                "field": "pickup_location",
+                                "precision": 4
+                              },
+                              "aggs": {
+                                "dropoff_location_grid": {
+                                  "geohash_grid": {
+                                    "field": "dropoff_location",
+                                    "precision": 4
+                                  },
+                                  "aggs": {
+                                    "avg_total_amount": {
+                                      "avg": {
+                                        "field": "total_amount"
+                                      }
+                                    },
+                                    "sum_tip_amount": {
+                                      "sum": {
+                                        "field": "tip_amount"
+                                      }
+                                    },
+                                    "pickup_time_histogram": {
+                                      "date_histogram": {
+                                        "field": "pickup_datetime",
+                                        "interval": "week"
+                                      },
+                                      "aggs": {
+                                        "avg_total_amount_per_week": {
+                                          "avg": {
+                                            "field": "total_amount"
+                                          }
+                                        },
+                                        "moving_avg_total_amount": {
+                                          "moving_avg": {
+                                            "buckets_path": "avg_total_amount_per_week",
+                                            "window": 10,
+                                            "model": "linear"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "settings": {
+            "index.requests.cache.enable": false
+          },
+          "warmup-iterations": 0,
+          "iterations": 1,
+          "target-throughput": 100
         },
         {
-          "operation": "distance_amount_agg",
-          "warmup-iterations": 5000,
-          "iterations": 5000
-          {%- if not target_throughput %}
-          ,"target-throughput": 200
-          {%- elif target_throughput is string and target_throughput.lower() == 'none' %}
-          {%- else %}
-          ,"target-throughput": {{ target_throughput | tojson }}
-          {%- endif %}
-          {%-if search_clients is defined and search_clients %}
-          ,"clients": {{ search_clients | tojson}}
-          {%- endif %}
-        },
-        {
-          "operation": "autohisto_agg",
-          "warmup-iterations": 5000,
-          "iterations": 10000
-          {%- if not target_throughput %}
-          ,"target-throughput": 150
-          {%- elif target_throughput is string and target_throughput.lower() == 'none' %}
-          {%- else %}
-          ,"target-throughput": {{ target_throughput | tojson }}
-          {%- endif %}
-          {%-if search_clients is defined and search_clients %}
-          ,"clients": {{ search_clients | tojson}}
-          {%- endif %}
+          "name": "expensive-query-2",
+          "operation": {
+            "operation-type": "search",
+            "body": {
+              "size": 0,
+              "query": {
+                "bool": {
+                  "must": [
+                    {
+                      "range": {
+                        "pickup_datetime": {
+                          "gte": "2010-01-01 00:00:00",
+                          "lte": "2030-12-31 23:59:59"
+                        }
+                      }
+                    },
+                    {
+                      "range": {
+                        "dropoff_datetime": {
+                          "gte": "2010-01-01 00:00:00",
+                          "lte": "2030-12-31 23:59:59"
+                        }
+                      }
+                    },
+                    {
+                      "wildcard": {
+                        "vendor_id": "*xyz*"
+                      }
+                    }
+                  ]
+                }
+              },
+              "aggs": {
+                "vendor_id_terms": {
+                  "terms": {
+                    "field": "vendor_id",
+                    "size": 50,
+                    "execution_hint": "map"
+                  },
+                  "aggs": {
+                    "trip_type_terms": {
+                      "terms": {
+                        "field": "trip_type",
+                        "size": 10,
+                        "execution_hint": "map"
+                      },
+                      "aggs": {
+                        "payment_type_terms": {
+                          "terms": {
+                            "field": "payment_type",
+                            "size": 10,
+                            "execution_hint": "map"
+                          },
+                          "aggs": {
+                            "pickup_location_grid": {
+                              "geohash_grid": {
+                                "field": "pickup_location",
+                                "precision": 4
+                              },
+                              "aggs": {
+                                "dropoff_location_grid": {
+                                  "geohash_grid": {
+                                    "field": "dropoff_location",
+                                    "precision": 4
+                                  },
+                                  "aggs": {
+                                    "avg_total_amount": {
+                                      "avg": {
+                                        "field": "total_amount"
+                                      }
+                                    },
+                                    "sum_tip_amount": {
+                                      "sum": {
+                                        "field": "tip_amount"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "settings": {
+            "index.requests.cache.enable": false
+          },
+          "warmup-iterations": 0,
+          "iterations": 1,
+          "target-throughput": 100
         }
       ]
     },
