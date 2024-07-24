@@ -133,8 +133,8 @@
             "settings": {
               "index.requests.cache.enable": false
             },
-            "warmup-iterations": 5000,
-            "iterations": 10000,
+            "warmup-iterations": 50000,
+            "iterations": 1000000,
             "target-throughput": 1000
           },
           {
@@ -230,8 +230,8 @@
             "settings": {
               "index.requests.cache.enable": false
             },
-            "warmup-iterations": 5000,
-            "iterations": 10000,
+            "warmup-iterations": 50000,
+            "iterations": 10000000,
             "target-throughput": 1000
           }
         ]
