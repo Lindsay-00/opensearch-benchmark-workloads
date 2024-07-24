@@ -133,9 +133,9 @@
             "settings": {
               "index.requests.cache.enable": false
             },
-            "warmup-iterations": 5000,
-            "iterations": 10000,
-            "target-throughput": 1000
+            "warmup-iterations": 500,
+            "iterations": 1000,
+            "target-throughput": 100
           },
           {
             "name": "expensive-query-2",
@@ -230,9 +230,9 @@
             "settings": {
               "index.requests.cache.enable": false
             },
-            "warmup-iterations": 5000,
-            "iterations": 10000,
-            "target-throughput": 1000
+            "warmup-iterations": 500,
+            "iterations": 1000,
+            "target-throughput": 100
           }
         ]
       }
