@@ -1,21 +1,29 @@
+{
+  "name": "append-no-conflicts",
+  "description": "Indexes the whole document corpus using a setup that will lead to a larger indexing throughput than the default settings and produce a smaller index (higher compression rate). Document ids are unique so all index operations are append only. After that a couple of queries are run.",
+  "default": true,
+  "schedule": [
     {
-      "name": "append-no-conflicts",
-      "description": "Indexes the whole document corpus using a setup that will lead to a larger indexing throughput than the default settings and produce a smaller index (higher compression rate). Document ids are unique so all index operations are append only. After that a couple of queries are run.",
-      "default": true,
-      "schedule": [
-        {
-          "operation": "default",
-          "warmup-iterations": 500,
-          "iterations": 1000
-          {%- if not target_throughput %}
-          ,"target-throughput": 500
-          {%- elif target_throughput is string and target_throughput.lower() == 'none' %}
-          {%- else %}
-          ,"target-throughput": {{ target_throughput | tojson }}
-          {%- endif %}
-          {%-if search_clients is defined and search_clients %}
-          ,"clients": {{ search_clients | tojson}}
-          {%- endif %}
+      "operation": {
+        "name": "search-with-custom-header",
+        "operation-type": "raw-request",
+        "method": "GET",
+        "path": "/_search",
+        "headers": {
+          "Content-Type": "application/json",
+          "queryGroupId": "analytics"
+        },
+        "body": {
+          "query": {
+            "match": {
+              "title": "OpenSearch"
+            }
+          }
         }
-      ]
+
+      }
+    
     }
+    
+  ]
+}
