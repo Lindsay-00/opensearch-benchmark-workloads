@@ -4,116 +4,106 @@
   "default": true,
   "schedule": [
     {
-      "operation": {
-        "name": "default",
-        "operation-type": "raw-request",
-        "method": "GET",
-        "path": "/_search",
-        "headers": {
-          "Content-Type": "application/json",
-          "queryGroupId": "analytics"
-        }
-      },
-      "warmup-iterations": 50,
-      "iterations": 100,
-      "target-throughput": {{ default_target_throughput or target_throughput | default(3) | tojson }},
-      "clients": {{ default_clients or search_clients | default(1) }}
-    },
-    {
-      "operation": {
-        "name": "range",
-        "operation-type": "raw-request",
-        "method": "GET",
-        "path": "/_search",
-        "headers": {
-          "Content-Type": "application/json",
-          "queryGroupId": "analytics"
-        }
-      },
-      "warmup-iterations": 50,
-      "iterations": 100,
-      "target-throughput": {{ range_target_throughput or target_throughput | default(0.7) | tojson }},
-      "clients": {{ range_clients or search_clients | default(1) }}
-    },
-    {
-      "operation": {
-        "name": "distance_amount_agg",
-        "operation-type": "raw-request",
-        "method": "GET",
-        "path": "/_search",
-        "headers": {
-          "Content-Type": "application/json",
-          "queryGroupId": "analytics"
-        }
-      },
-      "warmup-iterations": 50,
-      "iterations": 50,
-      "target-throughput": {{ distance_amount_agg_target_throughput or target_throughput | default(2) | tojson }},
-      "clients": {{ distance_amount_agg_clients or search_clients | default(1) }}
-    },
-    {
-      "operation": {
-        "name": "autohisto_agg",
-        "operation-type": "raw-request",
-        "method": "GET",
-        "path": "/_search",
-        "headers": {
-          "Content-Type": "application/json",
-          "queryGroupId": "analytics"
-        }
-      },
-      "warmup-iterations": 50,
-      "iterations": 100,
-      "target-throughput": {{ autohisto_agg_target_throughput or target_throughput | default(1.5) | tojson }},
-      "clients": {{ autohisto_agg_clients or search_clients | default(1) }}
-    },
-    {
-      "operation": {
-        "name": "date_histogram_agg",
-        "operation-type": "raw-request",
-        "method": "GET",
-        "path": "/_search",
-        "headers": {
-          "Content-Type": "application/json",
-          "queryGroupId": "analytics"
-        }
-      },
-      "warmup-iterations": 50,
-      "iterations": 100,
-      "target-throughput": {{ date_histogram_agg_target_throughput or target_throughput | default(1.5) | tojson }},
-      "clients": {{ date_histogram_agg_clients or search_clients | default(1) }}
-    },
-    {
-      "operation": {
-        "name": "desc_sort_tip_amount",
-        "operation-type": "raw-request",
-        "method": "GET",
-        "path": "/_search",
-        "headers": {
-          "Content-Type": "application/json",
-          "queryGroupId": "analytics"
-        }
-      },
-      "warmup-iterations": 50,
-      "iterations": 100,
-      "target-throughput": {{ desc_sort_tip_amount_target_throughput or target_throughput | default(0.5) | tojson }},
-      "clients": {{ desc_sort_tip_amount_clients or search_clients | default(1) }}
-    },
-    {
-      "operation": {
-        "name": "asc_sort_tip_amount",
-        "operation-type": "raw-request",
-        "method": "GET",
-        "path": "/_search",
-        "headers": {
-          "Content-Type": "application/json",
-          "queryGroupId": "analytics"
-        }
-      },
-      "warmup-iterations": 50,
-      "iterations": 100,
-      "target-throughput": {{ asc_sort_tip_amount_target_throughput or target_throughput | default(0.5) | tojson }},
-      "clients": {{ asc_sort_tip_amount_clients or search_clients | default(1) }}
+      "parallel": {
+        "tasks": [
+          {
+            "operation": {
+              "name": "default",
+              "operation-type": "raw-request",
+              "method": "GET",
+              "path": "/_search",
+              "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              }
+            },
+            "warmup-iterations": 50,
+            "iterations": 100,
+            "target-throughput": {{ default_target_throughput or target_throughput | default(3) | tojson }},
+            "clients": {{ default_clients or search_clients | default(1) }}
+          },
+          {
+            "operation": {
+              "name": "range",
+              "operation-type": "raw-request",
+              "method": "GET",
+              "path": "/_search",
+              "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              }
+            },
+            "warmup-iterations": 50,
+            "iterations": 100,
+            "target-throughput": {{ range_target_throughput or target_throughput | default(0.7) | tojson }},
+            "clients": {{ range_clients or search_clients | default(1) }}
+          },
+          {
+            "operation": {
+              "name": "distance_amount_agg",
+              "operation-type": "raw-request",
+              "method": "GET",
+              "path": "/_search",
+              "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              }
+            },
+            "warmup-iterations": 50,
+            "iterations": 50,
+            "target-throughput": {{ distance_amount_agg_target_throughput or target_throughput | default(2) | tojson }},
+            "clients": {{ distance_amount_agg_clients or search_clients | default(1) }}
+          },
+          {
+            "operation": {
+              "name": "default",
+              "operation-type": "raw-request",
+              "method": "GET",
+              "path": "/_search",
+              "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "non_intensive"
+              }
+            },
+            "warmup-iterations": 50,
+            "iterations": 100,
+            "target-throughput": {{ default_target_throughput or target_throughput | default(3) | tojson }},
+            "clients": {{ default_clients or search_clients | default(1) }}
+          },
+          {
+            "operation": {
+              "name": "range",
+              "operation-type": "raw-request",
+              "method": "GET",
+              "path": "/_search",
+              "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "non_intensive"
+              }
+            },
+            "warmup-iterations": 50,
+            "iterations": 100,
+            "target-throughput": {{ range_target_throughput or target_throughput | default(0.7) | tojson }},
+            "clients": {{ range_clients or search_clients | default(1) }}
+          },
+          {
+            "operation": {
+              "name": "distance_amount_agg",
+              "operation-type": "raw-request",
+              "method": "GET",
+              "path": "/_search",
+              "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "non_intensive"
+              }
+            },
+            "warmup-iterations": 50,
+            "iterations": 50,
+            "target-throughput": {{ distance_amount_agg_target_throughput or target_throughput | default(2) | tojson }},
+            "clients": {{ distance_amount_agg_clients or search_clients | default(1) }}
+          }
+        ]
+      }
     }
   ]
 },
