@@ -13,8 +13,7 @@
               "method": "GET",
               "path": "/_search",
               "headers": {
-                "Content-Type": "application/json",
-                "queryGroupId": "io_intensive"
+                "Content-Type": "application/json"
               }
             },
             "warmup-iterations": 50,
@@ -29,8 +28,7 @@
               "method": "GET",
               "path": "/_search",
               "headers": {
-                "Content-Type": "application/json",
-                "queryGroupId": "non_intensive"
+                "Content-Type": "application/json"
               }
             },
             "warmup-iterations": 50,
@@ -45,8 +43,7 @@
               "method": "GET",
               "path": "/_search",
               "headers": {
-                "Content-Type": "application/json",
-                "queryGroupId": "non_intensive"
+                "Content-Type": "application/json"
               }
             },
             "warmup-iterations": 50,
@@ -61,8 +58,7 @@
               "method": "GET",
               "path": "/_search",
               "headers": {
-                "Content-Type": "application/json",
-                "queryGroupId": "io_intensive"
+                "Content-Type": "application/json"
               }
             },
             "warmup-iterations": 50,
