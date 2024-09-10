@@ -11,7 +11,7 @@
         "path": "/_search",
         "headers": {
           "Content-Type": "application/json",
-          "queryGroupId": "io_intensive"
+          "queryGroupId": "non_intensive"
         }
       },
       "warmup-iterations": 50,
@@ -27,7 +27,7 @@
         "path": "/_search",
         "headers": {
           "Content-Type": "application/json",
-          "queryGroupId": "io_intensive"
+          "queryGroupId": "non_intensive"
         }
       },
       "warmup-iterations": 50,
@@ -43,7 +43,7 @@
         "path": "/_search",
         "headers": {
           "Content-Type": "application/json",
-          "queryGroupId": "io_intensive"
+          "queryGroupId": "non_intensive"
         }
       },
       "warmup-iterations": 50,
@@ -59,7 +59,7 @@
         "path": "/_search",
         "headers": {
           "Content-Type": "application/json",
-          "queryGroupId": "io_intensive"
+          "queryGroupId": "non_intensive"
         }
       },
       "warmup-iterations": 50,
@@ -75,7 +75,7 @@
         "path": "/_search",
         "headers": {
           "Content-Type": "application/json",
-          "queryGroupId": "io_intensive"
+          "queryGroupId": "non_intensive"
         }
       },
       "warmup-iterations": 50,
@@ -91,7 +91,7 @@
         "path": "/_search",
         "headers": {
           "Content-Type": "application/json",
-          "queryGroupId": "io_intensive"
+          "queryGroupId": "non_intensive"
         }
       },
       "warmup-iterations": 50,
@@ -107,7 +107,7 @@
         "path": "/_search",
         "headers": {
           "Content-Type": "application/json",
-          "queryGroupId": "io_intensive"
+          "queryGroupId": "non_intensive"
         }
       },
       "warmup-iterations": 50,
