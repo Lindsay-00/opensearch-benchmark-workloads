@@ -17,8 +17,8 @@
                 "queryGroupId": "io_intensive"
               }
             },
-            "warmup-iterations": 50,
-            "iterations": 100,
+            "warmup-iterations": 5000,
+            "iterations": 10000,
             "target-throughput": {{ default_target_throughput or target_throughput | default(3) | tojson }},
             "clients": {{ default_clients or search_clients | default(1) }}
           },
@@ -33,8 +33,8 @@
                 "queryGroupId": "non_intensive"
               }
             },
-            "warmup-iterations": 50,
-            "iterations": 100,
+            "warmup-iterations": 5000,
+            "iterations": 10000,
             "target-throughput": {{ range_target_throughput or target_throughput | default(0.7) | tojson }},
             "clients": {{ range_clients or search_clients | default(1) }}
           },
@@ -49,8 +49,8 @@
                 "queryGroupId": "non_intensive"
               }
             },
-            "warmup-iterations": 50,
-            "iterations": 50,
+            "warmup-iterations": 5000,
+            "iterations": 5000,
             "target-throughput": {{ distance_amount_agg_target_throughput or target_throughput | default(2) | tojson }},
             "clients": {{ distance_amount_agg_clients or search_clients | default(1) }}
           },
@@ -65,8 +65,8 @@
                 "queryGroupId": "io_intensive"
               }
             },
-            "warmup-iterations": 50,
-            "iterations": 100,
+            "warmup-iterations": 5000,
+            "iterations": 10000,
             "target-throughput": {{ autohisto_agg_target_throughput or target_throughput | default(1.5) | tojson }},
             "clients": {{ autohisto_agg_clients or search_clients | default(1) }}
           }
