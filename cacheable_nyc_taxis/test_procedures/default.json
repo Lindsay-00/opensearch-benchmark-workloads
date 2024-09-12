@@ -13,7 +13,7 @@
                   "index.requests.cache.enable":true
                 },
                 "warmup-iterations": 1200,
-                "iterations": 3200000,
+                "iterations": 320000,
                 "target-throughput": 6
               },
               {
@@ -23,7 +23,7 @@
                   "index.requests.cache.enable":true
                 },
                 "warmup-iterations": 1200,
-                "iterations": 3200000,
+                "iterations": 320000,
                 "target-throughput": 6
               },
               {
@@ -33,7 +33,7 @@
                   "index.requests.cache.enable":true
                 },
                 "warmup-iterations": 1200,
-                "iterations": 3200000,
+                "iterations": 320000,
                 "target-throughput": 6
               },
               {
