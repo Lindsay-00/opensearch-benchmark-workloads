@@ -37,9 +37,6 @@
               {
                 "name":"cheap-dropoff",
                 "operation":"cheap-dropoff",
-                "settings": {
-                  "index.requests.cache.enable":true
-                },
                 "warmup-iterations": 1200,
                 "iterations": 32000,
                 "target-throughput": 6
