@@ -7,23 +7,10 @@
       "parallel": {
         "tasks": [
           {
-            "name": "cheap-tip-amount",
-            "operation": {
-              "name": "cheap-tip-amount",
-              "operation-type": "search",
-              "path": "/_search", 
-              "headers": {
-                "Content-Type": "application/json",
-                "queryGroupId": "io_intensive"
-              },
-              "body": {
-                "query": {
-                  "match_all": {}
-                }
-              }
-            },
+            "name":"cheap-tip-amount",
+            "operation":"cheap-tip-amount",
             "settings": {
-              "index.requests.cache.enable": true
+              "index.requests.cache.enable":true
             },
             "warmup-iterations": 1200,
             "iterations": 320000,
