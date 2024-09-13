@@ -9,41 +9,29 @@
               {
                 "name":"cheap-tip-amount",
                 "operation":"cheap-tip-amount",
-                "settings": {
-                  "index.requests.cache.enable":true
-                },
                 "warmup-iterations": 1200,
-                "iterations": 320000,
+                "iterations": 32000,
                 "target-throughput": 6
               },
               {
                 "name":"cheap-fare-amount",
                 "operation":"cheap-fare-amount",
-                "settings": {
-                  "index.requests.cache.enable":true
-                },
                 "warmup-iterations": 1200,
-                "iterations": 320000,
+                "iterations": 32000,
                 "target-throughput": 6
               },
               {
                 "name":"cheap-total-amount",
                 "operation":"cheap-total-amount",
-                "settings": {
-                  "index.requests.cache.enable":true
-                },
                 "warmup-iterations": 1200,
-                "iterations": 320000,
+                "iterations": 32000,
                 "target-throughput": 6
               },
               {
                 "name":"cheap-pickup",
                 "operation":"cheap-pickup",
-                "settings": {
-                  "index.requests.cache.enable":true
-                },
                 "warmup-iterations": 1200,
-                "iterations": 320000,
+                "iterations": 32000,
                 "target-throughput": 6
               },
               {
@@ -53,87 +41,63 @@
                   "index.requests.cache.enable":true
                 },
                 "warmup-iterations": 1200,
-                "iterations": 320000,
+                "iterations": 32000,
                 "target-throughput": 6
               },
               {
                 "name":"autohisto-agg",
                 "operation":"autohisto_agg",
-                "settings": {
-                  "index.requests.cache.enable":true
-                },
                 "warmup-iterations": 300,
-                "iterations": 80000,
+                "iterations": 8000,
                 "target-throughput": 1.5
               },
               {
                 "name":"date-histogram-agg",
                 "operation":"date_histogram_agg",
-                "settings": {
-                  "index.requests.cache.enable":true
-                },
                 "warmup-iterations": 300,
-                "iterations": 80000,
+                "iterations": 8000,
                 "target-throughput": 1.5
               },
               {
                 "name":"date-histogram-calendar-interval",
                 "operation":"date_histogram_calendar_interval",
-                "settings": {
-                  "index.requests.cache.enable":true
-                },
                 "warmup-iterations": 300,
-                "iterations": 80000,
+                "iterations": 8000,
                 "target-throughput": 1.5
               },
               {
                 "name":"date-histogram-calendar-interval-with-tz",
                 "operation":"date_histogram_calendar_interval_with_tz",
-                "settings": {
-                  "index.requests.cache.enable":true
-                },
                 "warmup-iterations": 300,
-                "iterations": 80000,
+                "iterations": 8000,
                 "target-throughput": 1.5
               },
               {
                 "name":"date-histogram-fixed-interval",
                 "operation":"date_histogram_fixed_interval",
-                "settings": {
-                  "index.requests.cache.enable":true
-                },
                 "warmup-iterations": 300,
-                "iterations": 80000,
+                "iterations": 8000,
                 "target-throughput": 1.5
               },
               {
                 "name":"date-histogram-fixed-interval-with-tz",
                 "operation":"date_histogram_fixed_interval_with_tz",
-                "settings": {
-                  "index.requests.cache.enable":true
-                },
                 "warmup-iterations": 300,
-                "iterations": 80000,
+                "iterations": 8000,
                 "target-throughput": 1.5
               },
               {
                 "name":"auto-date-histogram",
                 "operation":"auto_date_histogram",
-                "settings": {
-                  "index.requests.cache.enable":true
-                },
                 "warmup-iterations": 300,
-                "iterations": 80000,
+                "iterations": 8000,
                 "target-throughput": 1.5
               },
               {
                 "name":"auto-date-histogram-with-tz",
                 "operation":"auto_date_histogram_with_tz",
-                "settings": {
-                  "index.requests.cache.enable":true
-                },
                 "warmup-iterations": 300,
-                "iterations": 80000,
+                "iterations": 8000,
                 "target-throughput": 1.5
               }
             ]
