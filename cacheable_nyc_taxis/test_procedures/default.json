@@ -10,249 +10,26 @@
             "name": "cheap-tip-amount",
             "operation": {
               "name": "cheap-tip-amount",
-              "operation-type": "raw-request",
-              "method": "GET",
-              "path": "/_search",
+              "operation-type": "search",
+              "path": "/_search", 
               "headers": {
                 "Content-Type": "application/json",
                 "queryGroupId": "io_intensive"
+              },
+              "body": {
+                "query": {
+                  "match_all": {}
+                }
               }
             },
             "settings": {
-                  "index.requests.cache.enable":true
-                },
+              "index.requests.cache.enable": true
+            },
             "warmup-iterations": 1200,
             "iterations": 320000,
             "target-throughput": 6
-          },
-          {
-            "name": "cheap-fare-amount",
-            "operation": {
-              "name": "cheap-fare-amount",
-              "operation-type": "raw-request",
-              "method": "GET",
-              "path": "/_search",
-              "headers": {
-                "Content-Type": "application/json",
-                "queryGroupId": "io_intensive"
-              }
-            },
-            "settings": {
-                  "index.requests.cache.enable":true
-                },
-            "warmup-iterations": 1200,
-            "iterations": 320000,
-            "target-throughput": 6
-          },
-          {
-            "name": "cheap-total-amount",
-            "operation": {
-              "name": "cheap-total-amount",
-              "operation-type": "raw-request",
-              "method": "GET",
-              "path": "/_search",
-              "headers": {
-                "Content-Type": "application/json",
-                "queryGroupId": "io_intensive"
-              }
-            },
-            "settings": {
-                  "index.requests.cache.enable":true
-                },
-            "warmup-iterations": 1200,
-            "iterations": 320000,
-            "target-throughput": 6
-          },
-          {
-            "name": "cheap-pickup",
-            "operation": {
-              "name": "cheap-pickup",
-              "operation-type": "raw-request",
-              "method": "GET",
-              "path": "/_search",
-              "headers": {
-                "Content-Type": "application/json",
-                "queryGroupId": "io_intensive"
-              }
-            },
-            "settings": {
-                  "index.requests.cache.enable":true
-                },
-            "warmup-iterations": 1200,
-            "iterations": 320000,
-            "target-throughput": 6
-          },
-          {
-            "name": "cheap-dropoff",
-            "operation": {
-              "name": "cheap-dropoff",
-              "operation-type": "raw-request",
-              "method": "GET",
-              "path": "/_search",
-              "headers": {
-                "Content-Type": "application/json",
-                "queryGroupId": "io_intensive"
-              }
-            },
-            "settings": {
-                  "index.requests.cache.enable":true
-                },
-            "warmup-iterations": 1200,
-            "iterations": 320000,
-            "target-throughput": 6
-          },
-          {
-            "name": "autohisto-agg",
-            "operation": {
-              "name": "autohisto-agg",
-              "operation-type": "raw-request",
-              "method": "GET",
-              "path": "/_search",
-              "headers": {
-                "Content-Type": "application/json",
-                "queryGroupId": "io_intensive"
-              }
-            },
-            "settings": {
-                  "index.requests.cache.enable":true
-                },
-            "warmup-iterations": 300,
-            "iterations": 80000,
-            "target-throughput": 1.5
-          },
-          {
-            "name": "date-histogram-agg",
-            "operation": {
-              "name": "date-histogram-agg",
-              "operation-type": "raw-request",
-              "method": "GET",
-              "path": "/_search",
-              "headers": {
-                "Content-Type": "application/json",
-                "queryGroupId": "io_intensive"
-              }
-            },
-            "settings": {
-                  "index.requests.cache.enable":true
-                },
-            "warmup-iterations": 300,
-            "iterations": 80000,
-            "target-throughput": 1.5
-          },
-          {
-            "name": "date-histogram-calendar-interval",
-            "operation": {
-              "name": "date-histogram-calendar-interval",
-              "operation-type": "raw-request",
-              "method": "GET",
-              "path": "/_search",
-              "headers": {
-                "Content-Type": "application/json",
-                "queryGroupId": "io_intensive"
-              }
-            },
-            "settings": {
-                  "index.requests.cache.enable":true
-                },
-            "warmup-iterations": 300,
-            "iterations": 80000,
-            "target-throughput": 1.5
-          },
-          {
-            "name": "date-histogram-calendar-interval-with-tz",
-            "operation": {
-              "name": "date-histogram-calendar-interval-with-tz",
-              "operation-type": "raw-request",
-              "method": "GET",
-              "path": "/_search",
-              "headers": {
-                "Content-Type": "application/json",
-                "queryGroupId": "io_intensive"
-              }
-            },
-            "settings": {
-                  "index.requests.cache.enable":true
-                },
-            "warmup-iterations": 300,
-            "iterations": 80000,
-            "target-throughput": 1.5
-          },
-          {
-            "name": "date-histogram-fixed-interval",
-            "operation": {
-              "name": "date-histogram-fixed-interval",
-              "operation-type": "raw-request",
-              "method": "GET",
-              "path": "/_search",
-              "headers": {
-                "Content-Type": "application/json",
-                "queryGroupId": "io_intensive"
-              }
-            },
-            "settings": {
-                  "index.requests.cache.enable":true
-                },
-            "warmup-iterations": 300,
-            "iterations": 80000,
-            "target-throughput": 1.5
-          },
-          {
-            "name": "date-histogram-fixed-interval-with-tz",
-            "operation": {
-              "name": "date-histogram-fixed-interval-with-tz",
-              "operation-type": "raw-request",
-              "method": "GET",
-              "path": "/_search",
-              "headers": {
-                "Content-Type": "application/json",
-                "queryGroupId": "io_intensive"
-              }
-            },
-            "settings": {
-                  "index.requests.cache.enable":true
-                },
-            "warmup-iterations": 300,
-            "iterations": 80000,
-            "target-throughput": 1.5
-          },
-          {
-            "name": "auto-date-histogram",
-            "operation": {
-              "name": "auto-date-histogram",
-              "operation-type": "raw-request",
-              "method": "GET",
-              "path": "/_search",
-              "headers": {
-                "Content-Type": "application/json",
-                "queryGroupId": "io_intensive"
-              }
-            },
-            "settings": {
-                  "index.requests.cache.enable":true
-                },
-            "warmup-iterations": 300,
-            "iterations": 80000,
-            "target-throughput": 1.5
-          },
-          {
-            "name": "auto-date-histogram-with-tz",
-            "operation": {
-              "name": "auto-date-histogram-with-tz",
-              "operation-type": "raw-request",
-              "method": "GET",
-              "path": "/_search",
-              "headers": {
-                "Content-Type": "application/json",
-                "queryGroupId": "io_intensive"
-              }
-            },
-            "settings": {
-                  "index.requests.cache.enable":true
-                },
-            "warmup-iterations": 300,
-            "iterations": 80000,
-            "target-throughput": 1.5
           }
+          
         ]
       }
     }
