@@ -18,9 +18,6 @@
                 "queryGroupId": "io_intensive"
               }
             },
-            "settings": {
-                  "index.requests.cache.enable":true
-                },
             "warmup-iterations": 1200,
             "iterations": 32000,
             "target-throughput": 6
@@ -37,9 +34,6 @@
                 "queryGroupId": "io_intensive"
               }
             },
-            "settings": {
-                  "index.requests.cache.enable":true
-                },
             "warmup-iterations": 1200,
             "iterations": 32000,
             "target-throughput": 6
@@ -56,9 +50,6 @@
                 "queryGroupId": "io_intensive"
               }
             },
-            "settings": {
-                  "index.requests.cache.enable":true
-                },
             "warmup-iterations": 1200,
             "iterations": 32000,
             "target-throughput": 6
@@ -75,9 +66,6 @@
                 "queryGroupId": "io_intensive"
               }
             },
-            "settings": {
-                  "index.requests.cache.enable":true
-                },
             "warmup-iterations": 1200,
             "iterations": 32000,
             "target-throughput": 6
@@ -94,9 +82,6 @@
                 "queryGroupId": "io_intensive"
               }
             },
-            "settings": {
-                  "index.requests.cache.enable":true
-                },
             "warmup-iterations": 1200,
             "iterations": 32000,
             "target-throughput": 6
@@ -113,9 +98,6 @@
                 "queryGroupId": "io_intensive"
               }
             },
-            "settings": {
-                  "index.requests.cache.enable":true
-                },
             "warmup-iterations": 300,
             "iterations": 8000,
             "target-throughput": 1.5
@@ -132,9 +114,6 @@
                 "queryGroupId": "io_intensive"
               }
             },
-            "settings": {
-                  "index.requests.cache.enable":true
-                },
             "warmup-iterations": 300,
             "iterations": 8000,
             "target-throughput": 1.5
@@ -151,9 +130,6 @@
                 "queryGroupId": "io_intensive"
               }
             },
-            "settings": {
-                  "index.requests.cache.enable":true
-                },
             "warmup-iterations": 300,
             "iterations": 8000,
             "target-throughput": 1.5
@@ -170,9 +146,6 @@
                 "queryGroupId": "io_intensive"
               }
             },
-            "settings": {
-                  "index.requests.cache.enable":true
-                },
             "warmup-iterations": 300,
             "iterations": 8000,
             "target-throughput": 1.5
@@ -189,9 +162,6 @@
                 "queryGroupId": "io_intensive"
               }
             },
-            "settings": {
-                  "index.requests.cache.enable":true
-                },
             "warmup-iterations": 300,
             "iterations": 8000,
             "target-throughput": 1.5
@@ -208,9 +178,6 @@
                 "queryGroupId": "io_intensive"
               }
             },
-            "settings": {
-                  "index.requests.cache.enable":true
-                },
             "warmup-iterations": 300,
             "iterations": 8000,
             "target-throughput": 1.5
@@ -227,9 +194,6 @@
                 "queryGroupId": "io_intensive"
               }
             },
-            "settings": {
-                  "index.requests.cache.enable":true
-                },
             "warmup-iterations": 300,
             "iterations": 8000,
             "target-throughput": 1.5
@@ -246,9 +210,6 @@
                 "queryGroupId": "io_intensive"
               }
             },
-            "settings": {
-                  "index.requests.cache.enable":true
-                },
             "warmup-iterations": 300,
             "iterations": 8000,
             "target-throughput": 1.5
