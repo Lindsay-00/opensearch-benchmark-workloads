@@ -7,18 +7,307 @@
       "parallel": {
         "tasks": [
           {
-            "name":"cheap-tip-amount",
-            "operation":"cheap-tip-amount",
+            "name": "cheap-tip-amount",
+            "operation": {
+              "name": "cheap-tip-amount",
+              "operation-type": "search",
+              "path": "/_search",
+              "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              },
+              "body": {
+                "query": {
+                  "match_all": {}
+                }
+              }
+            },
             "settings": {
-              "index.requests.cache.enable":true
+              "index.requests.cache.enable": true
             },
             "warmup-iterations": 1200,
             "iterations": 320000,
             "target-throughput": 6
+          },
+          {
+            "name": "cheap-fare-amount",
+            "operation": {
+              "name": "cheap-fare-amount",
+              "operation-type": "search",
+              "path": "/_search",
+              "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              },
+              "body": {
+                "query": {
+                  "match_all": {}
+                }
+              }
+            },
+            "settings": {
+              "index.requests.cache.enable": true
+            },
+            "warmup-iterations": 1200,
+            "iterations": 320000,
+            "target-throughput": 6
+          },
+          {
+            "name": "cheap-total-amount",
+            "operation": {
+              "name": "cheap-total-amount",
+              "operation-type": "search",
+              "path": "/_search",
+              "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              },
+              "body": {
+                "query": {
+                  "match_all": {}
+                }
+              }
+            },
+            "settings": {
+              "index.requests.cache.enable": true
+            },
+            "warmup-iterations": 1200,
+            "iterations": 320000,
+            "target-throughput": 6
+          },
+          {
+            "name": "cheap-pickup",
+            "operation": {
+              "name": "cheap-pickup",
+              "operation-type": "search",
+              "path": "/_search",
+              "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              },
+              "body": {
+                "query": {
+                  "match_all": {}
+                }
+              }
+            },
+            "settings": {
+              "index.requests.cache.enable": true
+            },
+            "warmup-iterations": 1200,
+            "iterations": 320000,
+            "target-throughput": 6
+          },
+          {
+            "name": "cheap-dropoff",
+            "operation": {
+              "name": "cheap-dropoff",
+              "operation-type": "search",
+              "path": "/_search",
+              "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              },
+              "body": {
+                "query": {
+                  "match_all": {}
+                }
+              }
+            },
+            "settings": {
+              "index.requests.cache.enable": true
+            },
+            "warmup-iterations": 1200,
+            "iterations": 320000,
+            "target-throughput": 6
+          },
+          {
+            "name": "autohisto-agg",
+            "operation": {
+              "name": "autohisto_agg",
+              "operation-type": "search",
+              "path": "/_search",
+              "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              },
+              "body": {
+                "query": {
+                  "match_all": {}
+                }
+              }
+            },
+            "settings": {
+              "index.requests.cache.enable": true
+            },
+            "warmup-iterations": 300,
+            "iterations": 80000,
+            "target-throughput": 1.5
+          },
+          {
+            "name": "date-histogram-agg",
+            "operation": {
+              "name": "date_histogram_agg",
+              "operation-type": "search",
+              "path": "/_search",
+              "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              },
+              "body": {
+                "query": {
+                  "match_all": {}
+                }
+              }
+            },
+            "settings": {
+              "index.requests.cache.enable": true
+            },
+            "warmup-iterations": 300,
+            "iterations": 80000,
+            "target-throughput": 1.5
+          },
+          {
+            "name": "date-histogram-calendar-interval",
+            "operation": {
+              "name": "date_histogram_calendar_interval",
+              "operation-type": "search",
+              "path": "/_search",
+              "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              },
+              "body": {
+                "query": {
+                  "match_all": {}
+                }
+              }
+            },
+            "settings": {
+              "index.requests.cache.enable": true
+            },
+            "warmup-iterations": 300,
+            "iterations": 80000,
+            "target-throughput": 1.5
+          },
+          {
+            "name": "date-histogram-calendar-interval-with-tz",
+            "operation": {
+              "name": "date_histogram_calendar_interval_with_tz",
+              "operation-type": "search",
+              "path": "/_search",
+              "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              },
+              "body": {
+                "query": {
+                  "match_all": {}
+                }
+              }
+            },
+            "settings": {
+              "index.requests.cache.enable": true
+            },
+            "warmup-iterations": 300,
+            "iterations": 80000,
+            "target-throughput": 1.5
+          },
+          {
+            "name": "date-histogram-fixed-interval",
+            "operation": {
+              "name": "date_histogram_fixed_interval",
+              "operation-type": "search",
+              "path": "/_search",
+              "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              },
+              "body": {
+                "query": {
+                  "match_all": {}
+                }
+              }
+            },
+            "settings": {
+              "index.requests.cache.enable": true
+            },
+            "warmup-iterations": 300,
+            "iterations": 80000,
+            "target-throughput": 1.5
+          },
+          {
+            "name": "date-histogram-fixed-interval-with-tz",
+            "operation": {
+              "name": "date_histogram_fixed_interval_with_tz",
+              "operation-type": "search",
+              "path": "/_search",
+              "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              },
+              "body": {
+                "query": {
+                  "match_all": {}
+                }
+              }
+            },
+            "settings": {
+              "index.requests.cache.enable": true
+            },
+            "warmup-iterations": 300,
+            "iterations": 80000,
+            "target-throughput": 1.5
+          },
+          {
+            "name": "auto-date-histogram",
+            "operation": {
+              "name": "auto_date_histogram",
+              "operation-type": "search",
+              "path": "/_search",
+              "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              },
+              "body": {
+                "query": {
+                  "match_all": {}
+                }
+              }
+            },
+            "settings": {
+              "index.requests.cache.enable": true
+            },
+            "warmup-iterations": 300,
+            "iterations": 80000,
+            "target-throughput": 1.5
+          },
+          {
+            "name": "auto-date-histogram-with-tz",
+            "operation": {
+              "name": "auto_date_histogram_with_tz",
+              "operation-type": "search",
+              "path": "/_search",
+              "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              },
+              "body": {
+                "query": {
+                  "match_all": {}
+                }
+              }
+            },
+            "settings": {
+              "index.requests.cache.enable": true
+            },
+            "warmup-iterations": 300,
+            "iterations": 80000,
+            "target-throughput": 1.5
           }
-          
         ]
       }
     }
   ]
 }
+
