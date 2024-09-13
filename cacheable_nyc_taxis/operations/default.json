@@ -28,6 +28,10 @@
     {
       "name": "default",
       "operation-type": "search",
+      "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              },
       "body": {
         "query": {
           "match_all": {}
@@ -37,6 +41,10 @@
     {
       "name": "range",
       "operation-type": "search",
+      "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              },
       "body": {
         "query": {
           "range": {
@@ -51,6 +59,10 @@
     {
       "name": "distance_amount_agg",
       "operation-type": "search",
+      "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              },
       "body": {
         "size": 0,
         "query": {
@@ -85,6 +97,10 @@
     {
       "name": "autohisto_agg",
       "operation-type": "search",
+      "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              },
       "body": {
         "size": 0,
         "query": {
@@ -108,6 +124,10 @@
     {
       "name": "date_histogram_agg",
       "operation-type": "search",
+      "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              },
       "body": {
         "size": 0,
         "query": {
@@ -131,6 +151,10 @@
     {
       "name": "date_histogram_calendar_interval",
       "operation-type": "search",
+      "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              },
       "body": {
         "size": 0,
         "query": {
@@ -154,6 +178,10 @@
     {
       "name": "date_histogram_calendar_interval_with_tz",
       "operation-type": "search",
+      "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              },
       "body": {
         "size": 0,
         "query": {
@@ -178,6 +206,10 @@
     {
       "name": "date_histogram_fixed_interval",
       "operation-type": "search",
+      "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              },
       "body": {
         "size": 0,
         "query": {
@@ -201,6 +233,10 @@
     {
       "name": "date_histogram_fixed_interval_with_tz",
       "operation-type": "search",
+      "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              },
       "body": {
         "size": 0,
         "query": {
@@ -225,6 +261,10 @@
     {
       "name": "date_histogram_fixed_interval_with_metrics",
       "operation-type": "search",
+      "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              },
       "body": {
         "size": 0,
         "query": {
@@ -253,6 +293,10 @@
     {
       "name": "auto_date_histogram",
       "operation-type": "search",
+      "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              },
       "body": {
         "size": 0,
         "query": {
@@ -276,6 +320,10 @@
     {
       "name": "auto_date_histogram_with_tz",
       "operation-type": "search",
+      "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              },
       "body": {
         "size": 0,
         "query": {
@@ -300,6 +348,10 @@
     {
       "name": "auto_date_histogram_with_metrics",
       "operation-type": "search",
+      "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              },
       "body": {
         "size": 0,
         "query": {
@@ -328,6 +380,10 @@
     {
       "name": "cheap-passenger-count",
       "operation-type": "search",
+      "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              },
       "body": {
         "size": 0,
         "query": {
@@ -343,6 +399,10 @@
     {
       "name": "cheap-tip-amount",
       "operation-type": "search",
+      "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              },
       "body": {
         "size": 0,
         "query": {
@@ -358,6 +418,10 @@
     {
       "name": "cheap-fare-amount",
       "operation-type": "search",
+      "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              },
       "body": {
         "size": 0,
         "query": {
@@ -373,6 +437,10 @@
     {
       "name": "cheap-total-amount",
       "operation-type": "search",
+      "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              },
       "body": {
         "size": 0,
         "query": {
@@ -388,6 +456,10 @@
     {
       "name": "cheap-pickup",
       "operation-type": "search",
+      "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              },
       "body": {
         "size": 0,
         "query": {
@@ -403,6 +475,10 @@
     {
       "name": "cheap-dropoff",
       "operation-type": "search",
+      "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              },
       "body": {
         "size": 0,
         "query": {
