@@ -1,27 +1,3 @@
-// {
-//   "name": "cacheable-queries",
-//   "description": "Indexes the whole document corpus using a setup that will lead to a larger indexing throughput than the default settings and produce a smaller index (higher compression rate). Document ids are unique so all index operations are append only. After that a couple of queries are run.",
-//   "default": true,
-//   "schedule": [
-//     {
-//       "parallel": {
-//         "tasks": [
-//           {
-//             "name": "cheap-tip-amount",
-//             "operation": {
-//               "name": "cheap-tip-amount",
-//               "operation-type": "raw-request",
-//               "method": "GET",
-//               "path": "/_search",
-//               "headers": {
-//                 "Content-Type": "application/json",
-//                 "queryGroupId": "io_intensive"
-//               }
-//             },
-//             "warmup-iterations": 1200,
-//             "iterations": 32000,
-//             "target-throughput": 6
-
 {
   "name": "cacheable-queries",
   "description": "Indexes the whole document corpus using a setup that will lead to a larger indexing throughput than the default settings and produce a smaller index (higher compression rate). Document ids are unique so all index operations are append only. After that a couple of queries are run.",
