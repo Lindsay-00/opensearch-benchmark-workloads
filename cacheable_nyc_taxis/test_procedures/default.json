@@ -52,7 +52,7 @@
             "name":"date-histogram-agg",
             "operation":"date_histogram_agg",
             "warmup-iterations": 300,
-            "iterations": 80000,
+            "iterations": 10000,
             "target-throughput": 15000
           },
           {
