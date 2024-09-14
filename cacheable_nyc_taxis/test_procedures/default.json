@@ -11,35 +11,35 @@
             "operation":"cheap-tip-amount",
             "warmup-iterations": 1200,
             "iterations": 120000,
-            "target-throughput": 600
+            "target-throughput": 6000
           },
           {
             "name":"cheap-fare-amount",
             "operation":"cheap-fare-amount",
             "warmup-iterations": 1200,
             "iterations": 120000,
-            "target-throughput": 600
+            "target-throughput": 6000
           },
           {
             "name":"cheap-total-amount",
             "operation":"cheap-total-amount",
             "warmup-iterations": 1200,
             "iterations": 120000,
-            "target-throughput": 600
+            "target-throughput": 6000
           },
           {
             "name":"cheap-pickup",
             "operation":"cheap-pickup",
             "warmup-iterations": 1200,
             "iterations": 120000,
-            "target-throughput": 600
+            "target-throughput": 6000
           },
           {
             "name":"cheap-dropoff",
             "operation":"cheap-dropoff",
             "warmup-iterations": 1200,
             "iterations": 120000,
-            "target-throughput": 600
+            "target-throughput": 6000
           }
         ]
       }
