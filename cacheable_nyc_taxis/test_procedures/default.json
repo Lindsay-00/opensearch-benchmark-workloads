@@ -40,41 +40,6 @@
             "warmup-iterations": 1200,
             "iterations": 120000,
             "target-throughput": 600
-          },
-          {
-            "name":"autohisto-agg",
-            "operation":"autohisto_agg",
-            "warmup-iterations": 300,
-            "iterations": 40000,
-            "target-throughput": 150
-          },
-          {
-            "name":"date-histogram-agg",
-            "operation":"date_histogram_agg",
-            "warmup-iterations": 300,
-            "iterations": 2500,
-            "target-throughput": 150
-          },
-          {
-            "name":"date-histogram-calendar-interval",
-            "operation":"date_histogram_calendar_interval",
-            "warmup-iterations": 300,
-            "iterations": 40000,
-            "target-throughput": 150
-          },
-          {
-            "name":"date-histogram-fixed-interval",
-            "operation":"date_histogram_fixed_interval",
-            "warmup-iterations": 300,
-            "iterations": 40000,
-            "target-throughput": 150
-          },
-          {
-            "name":"auto-date-histogram",
-            "operation":"auto_date_histogram",
-            "warmup-iterations": 300,
-            "iterations": 40000,
-            "target-throughput": 150
           }
         ]
       }
