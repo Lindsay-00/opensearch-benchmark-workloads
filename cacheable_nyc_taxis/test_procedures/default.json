@@ -11,70 +11,70 @@
             "operation":"cheap-tip-amount",
             "warmup-iterations": 1200,
             "iterations": 120000,
-            "target-throughput": 6000
+            "target-throughput": 60
           },
           {
             "name":"cheap-fare-amount",
             "operation":"cheap-fare-amount",
             "warmup-iterations": 1200,
             "iterations": 120000,
-            "target-throughput": 6000
+            "target-throughput": 60
           },
           {
             "name":"cheap-total-amount",
             "operation":"cheap-total-amount",
             "warmup-iterations": 1200,
             "iterations": 120000,
-            "target-throughput": 6000
+            "target-throughput": 60
           },
           {
             "name":"cheap-pickup",
             "operation":"cheap-pickup",
             "warmup-iterations": 1200,
             "iterations": 120000,
-            "target-throughput": 6000
+            "target-throughput": 60
           },
           {
             "name":"cheap-dropoff",
             "operation":"cheap-dropoff",
             "warmup-iterations": 1200,
             "iterations": 120000,
-            "target-throughput": 6000
+            "target-throughput": 60
           },
           {
             "name":"autohisto-agg",
             "operation":"autohisto_agg",
             "warmup-iterations": 300,
             "iterations": 40000,
-            "target-throughput": 1500
+            "target-throughput": 15
           },
           {
             "name":"date-histogram-agg",
             "operation":"date_histogram_agg",
             "warmup-iterations": 300,
             "iterations": 2500,
-            "target-throughput": 1500
+            "target-throughput": 15
           },
           {
             "name":"date-histogram-calendar-interval",
             "operation":"date_histogram_calendar_interval",
             "warmup-iterations": 300,
             "iterations": 40000,
-            "target-throughput": 1500
+            "target-throughput": 15
           },
           {
             "name":"date-histogram-fixed-interval",
             "operation":"date_histogram_fixed_interval",
             "warmup-iterations": 300,
             "iterations": 40000,
-            "target-throughput": 1500
+            "target-throughput": 15
           },
           {
             "name":"auto-date-histogram",
             "operation":"auto_date_histogram",
             "warmup-iterations": 300,
             "iterations": 40000,
-            "target-throughput": 1500
+            "target-throughput": 15
           }
         ]
       }
