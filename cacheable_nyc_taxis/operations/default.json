@@ -28,6 +28,10 @@
     {
       "name": "default",
       "operation-type": "search",
+      "headers": {
+                "Content-Type": "application/json",
+                "queryGroupId": "io_intensive"
+              },
       "body": {
         "query": {
           "match_all": {}
