@@ -11,7 +11,7 @@
         "path": "/_search",
         "headers": {
           "Content-Type": "application/json",
-          "queryGroupId": "analytics"
+          "queryGroupId": "io_intensive"
         },
         "body": {
           "query": {
