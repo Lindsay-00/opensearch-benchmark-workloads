@@ -45,7 +45,7 @@
             "name":"autohisto-agg",
             "operation":"autohisto_agg",
             "warmup-iterations": 300,
-            "iterations": 400,
+            "iterations": 40000,
             "target-throughput": 15000
           },
           {
