@@ -10,7 +10,7 @@
             "name":"cheap-tip-amount",
             "operation":"cheap-tip-amount",
             "warmup-iterations": 1200,
-            "iterations": 12000,
+            "iterations": 120000,
             "target-throughput": 6000
           },
           {
